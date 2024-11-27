@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
     <nav>
@@ -178,7 +179,7 @@
 
     <section id="contato" class="contato">
         <h2 data-aos="fade-up">Entre em Contato</h2>
-        <form action="mailto:contato@actadvocacia.com.br" method="POST" enctype="text/plain" data-aos="fade-up">
+        <form id="contactForm" onsubmit="handleSubmit(event)">
             <div class="form-group">
                 <input type="text" name="nome" required placeholder="Nome completo">
             </div>
@@ -231,7 +232,8 @@
         </div>
     </footer>
 
-    <script type="module" src="main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="/main.js"></script>
     <div class="whatsapp-container">
         <a href="https://wa.me/5541996596826" class="whatsapp-float" target="_blank">
             <i class="fab fa-whatsapp"></i>
