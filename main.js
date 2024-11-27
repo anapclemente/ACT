@@ -54,24 +54,27 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         try {
+            const formData = new FormData(form);
             const response = await fetch(form.action, {
                 method: 'POST',
-                body: new FormData(form),
+                body: formData,
                 headers: {
-                    'Accept': 'application/json'
-                }
+                    'Accept': 'application/json',
+                    // Removemos o Content-Type para deixar o navegador definir com o boundary correto
+                },
+                mode: 'cors' // Adiciona modo CORS
             });
 
+            const data = await response.json();
+
             if (response.ok) {
-                // Mostra modal de sucesso
                 successModal.style.display = 'block';
-                form.reset(); // Limpa o formulário
+                form.reset();
             } else {
-                // Mostra modal de erro
-                errorModal.style.display = 'block';
+                throw new Error('Erro no envio');
             }
         } catch (error) {
-            // Mostra modal de erro
+            console.error('Erro:', error);
             errorModal.style.display = 'block';
         }
     });
