@@ -37,9 +37,9 @@
             <!-- Lado esquerdo -->
             <div class="hero-left" data-aos="fade-right">
                 <h1>ACT Advocacia</h1>
-                <p>Soluções jurídicas estratégicas em crédito, contratos e gestão empresarial, com inovação e eficiência.</p>
+                <p>Soluções jurídicas estratégicas em recuperação decrédito, contratos e gestão empresarial, com inovação e eficiência.</p>
                 <button class="cta-button" onclick="document.querySelector('#contato').scrollIntoView({behavior: 'smooth'})">
-                    Agende uma Consulta Gratuita
+                    Solicite uma orientação jurídica
                 </button>
             </div>
             
@@ -86,12 +86,6 @@
                 <h3>Tributário Empresarial</h3>
                 <p>Elaboração de contratos empresariais, atuação no litigioso e contencioso e na análise de regularidade fiscal.</p>
             </div>
-            <!-- <div class="area contato" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-phone"></i>
-                <h3>Precisa de Ajuda Jurídica?</h3>
-                <p>Entre em contato conosco!</p>
-                <p class="destaque-texto">(41) 99659-6826</p>
-            </div> -->
         </div>
     </section>
 
@@ -99,7 +93,6 @@
         <h2 class="main-title" data-aos="fade-up">Sobre a ACT Advocacia</h2>
         
         <div class="sobre-container">
-            <!-- <h3 class="subtitle" data-aos="fade-up">Excelência Jurídica com Soluções Personalizadas</h3> -->
             <p class="text-limited" data-aos="fade-up">
                 Em um cenário jurídico dinâmico, a ACT Advocacia combina competência técnica e abordagem personalizada, compreendendo as necessidades de cada cliente e oferecendo soluções sob medida. Nossos especialistas atuam com excelência e cuidado em todas as etapas, seja em ações individuais ou massificadas.
             </p>
@@ -182,7 +175,7 @@
 
     <section id="contato" class="contato">
         <h2 data-aos="fade-up">Entre em Contato</h2>
-        <form action="mailto:contato@actadvocacia.com.br" method="POST" enctype="text/plain" data-aos="fade-up">
+        <form id="contactForm" action="https://formspree.io/f/xnnqgbrp" method="POST">
             <div class="form-group">
                 <input type="text" name="nome" required placeholder="Nome completo">
             </div>
@@ -195,16 +188,23 @@
             <div class="form-group">
                 <select name="assunto" required>
                     <option value="">Selecione a área</option>
+                    <option value="recuperacao">Direito Contratual</option>
                     <option value="recuperacao">Recuperação de Crédito</option>
+                    <option value="societario">Direito Societário</option>
                     <option value="imobiliario">Direito Imobiliário</option>
-                    <option value="empresarial">Direito Empresarial</option>
+                    <option value="litigios">Litígios Cíveis e de Consumo                    </option>
+                    <option value="empresarial">Tributário Empresarial</option>
+                    <option value="outros">Outros Assuntos</option>
                 </select>
             </div>
             <div class="form-group">
                 <textarea name="mensagem" required placeholder="Sua mensagem"></textarea>
             </div>
+            <!-- Campo oculto para organização no Formspree -->
+            <input type="hidden" name="_subject" value="Nova mensagem de contato">
             <button type="submit" class="cta-button">Enviar Mensagem</button>
         </form>
+        
     </section>
 
     <footer>
@@ -243,6 +243,24 @@
         <a href="https://wa.me/5541996596826" class="whatsapp-float" target="_blank">
             <i class="fab fa-whatsapp"></i>
         </a>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <i class="fas fa-check-circle"></i>
+            <h3>Mensagem enviada com sucesso!</h3>
+            <p>Obrigado por entrar em contato conosco. Nossa equipe já está analisando sua solicitação e retornaremos o mais breve possível.</p>
+        </div>
+    </div>
+
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <i class="fas fa-exclamation-circle"></i>
+            <h3>Erro no Envio</h3>
+            <p>Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.</p>
+        </div>
     </div>
 </body>
 </html>
