@@ -179,7 +179,7 @@
 
     <section id="contato" class="contato">
         <h2 data-aos="fade-up">Entre em Contato</h2>
-        <form id="contactForm" onsubmit="handleSubmit(event)">
+        <form action="mailto:contato@actadvocacia.com.br" method="POST" enctype="text/plain" data-aos="fade-up">
             <div class="form-group">
                 <input type="text" name="nome" required placeholder="Nome completo">
             </div>
@@ -233,6 +233,14 @@
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+        });
+    </script>
     <script type="module" src="/main.js"></script>
     <div class="whatsapp-container">
         <a href="https://wa.me/5541996596826" class="whatsapp-float" target="_blank">
