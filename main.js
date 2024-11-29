@@ -1,38 +1,83 @@
-// Verifica se AOS existe antes de inicializar
-if (typeof AOS !== 'undefined') {
-    // Inicializa AOS
-    AOS.init({
-        duration: 1000,
-        once: true
+// Função principal que inicializa todas as funcionalidades
+function initializeApp() {
+    // Inicializa AOS se existir
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    }
+
+    // Inicializa o menu mobile
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        });
+
+        // Fecha o menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.classList.remove('active');
+            });
+        });
+    }
+
+    // Função para animar os números
+    function animateValue(id, start, end, duration) {
+        const element = document.getElementById(id);
+        if (!element) return;
+        
+        let startTime = null;
+        
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            element.innerHTML = Math.floor(progress * (end - start) + start) + (id === 'stat1' || id === 'stat3' ? '%' : '');
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        }
+        
+        window.requestAnimationFrame(step);
+    }
+
+    // Inicia as animações dos números
+    const stats = {
+        'stat1': 92,
+        'stat2': 800,
+        'stat3': 100
+    };
+
+    Object.entries(stats).forEach(([id, value]) => {
+        if (document.getElementById(id)) {
+            animateValue(id, 0, value, 2000);
+        }
     });
 }
 
-// Função para animar os números
-function animateValue(id, start, end, duration) {
-    const element = document.getElementById(id);
-    if (!element) return; // Proteção contra elemento não encontrado
-    
-    let startTime = null;
-
-    function step(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        element.innerText = Math.floor(progress * (end - start) + start) + (id === 'stat1' || id === 'stat3' ? '%' : '');
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    }
-
-    window.requestAnimationFrame(step);
+// Garante que o código só execute quando o DOM estiver totalmente carregado
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
 }
 
-// Espera o DOM carregar completamente
+// Adiciona listener para scroll suave nos links de navegação
 document.addEventListener('DOMContentLoaded', () => {
-    // Verifica se os elementos existem antes de chamar a animação
-    const elements = ['stat1', 'stat2', 'stat3'];
-    if (elements.every(id => document.getElementById(id))) {
-        animateValue('stat1', 0, 92, 2000);
-        animateValue('stat2', 0, 800, 2000);
-        animateValue('stat3', 0, 100, 2000);
-    }
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 });
