@@ -1137,7 +1137,7 @@ color: #2f3749;}
 @media (max-width: 768px) {
     .hero h1 {
         font-size: calc(1.5rem * var(--scale-factor));
-        margin-top: 20%;
+        margin-top: 35%;
 
     }
 }
