@@ -210,7 +210,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: calc(20px * var(--scale-factor)) var(--padding-horizontal);
+    padding: 1rem 2rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -230,14 +230,15 @@ nav.scrolled {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--secondary-color);
+    flex-shrink: 0;
 }
 
 .nav-links {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 2rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    flex: 1;
 }
 
 .nav-links a {
@@ -1324,8 +1325,10 @@ color: #2f3749;}
 /* Estilo base do menu */
 .nav-links {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 2rem;
+    flex: 1;
 }
 
 /* Botão do menu mobile - escondido em desktop */
@@ -1349,28 +1352,45 @@ color: #2f3749;}
         flex-direction: column;
         padding: 2rem;
         text-align: center;
+        justify-content: center; /* Mantém centralizado */
+        align-items: center;     /* Mantém centralizado */
+        gap: 1.5rem;            /* Ajusta o espaçamento vertical */
+    }
+
+    .nav-links a {
+        width: 100%;            /* Ocupa toda a largura disponível */
+        padding: 1rem 0;        /* Aumenta a área clicável */
+        display: block;         /* Garante que o link ocupe toda a largura */
+        margin: 0;             /* Remove margens */
     }
 
     /* Quando o menu mobile está ativo */
     .nav-links.active {
         display: flex;
+        animation: slideDown 0.3s ease-in-out; /* Opcional: adiciona animação */
     }
 }
 
-/* Versão Desktop - garante que o menu sempre apareça */
+/* Opcional: Animação para o menu mobile */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Versão Desktop - garante que o menu sempre apareça corretamente */
 @media (min-width: 769px) {
     .nav-links {
-        display: flex !important; /* Força exibição em desktop */
+        display: flex !important;
         position: static;
         padding: 0;
         background: none;
         flex-direction: row;
-    }
-
-    /* Remove qualquer estilo mobile que possa afetar o desktop */
-    .nav-links.active {
-        position: static;
-        background: none;
-        padding: 0;
+        justify-content: center;
     }
 }
