@@ -1320,3 +1320,57 @@ color: #2f3749;}
         justify-content: space-between;
     }
 }
+
+/* Estilo base do menu */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Botão do menu mobile - escondido em desktop */
+.menu-btn {
+    display: none;
+}
+
+/* Versão Mobile */
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block; /* Mostra o botão apenas em mobile */
+    }
+
+    .nav-links {
+        display: none; /* Esconde o menu em mobile */
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: var(--primary-color);
+        flex-direction: column;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    /* Quando o menu mobile está ativo */
+    .nav-links.active {
+        display: flex;
+    }
+}
+
+/* Versão Desktop - garante que o menu sempre apareça */
+@media (min-width: 769px) {
+    .nav-links {
+        display: flex !important; /* Força exibição em desktop */
+        position: static;
+        padding: 0;
+        background: none;
+        flex-direction: row;
+    }
+
+    /* Remove qualquer estilo mobile que possa afetar o desktop */
+    .nav-links.active {
+        position: static;
+        background: none;
+        padding: 0;
+    }
+}

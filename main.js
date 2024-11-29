@@ -27,36 +27,3 @@ document.addEventListener('DOMContentLoaded', () => {
     animateValue('stat2', 0, 800, 2000);
     animateValue('stat3', 0, 100, 2000);
 });
-
-// Adicione o novo código para o menu mobile
-document.addEventListener('DOMContentLoaded', function() {
-    // Menu Mobile
-    const initMobileMenu = () => {
-        const menuBtn = document.querySelector('.menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        if (!menuBtn || !navLinks) return;
-        
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuBtn.classList.toggle('active');
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuBtn.classList.remove('active');
-            });
-        });
-    };
-
-    // Só inicialize o AOS se ainda não estiver inicializado
-    if (typeof AOS !== 'undefined' && !AOS.refresh) {
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-    }
-
-    initMobileMenu();
-});
