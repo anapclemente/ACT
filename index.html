@@ -277,5 +277,36 @@
             <p>Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.</p>
         </div>
     </div>
+
+    <script>
+        // Verifica se os elementos existem antes de adicionar os event listeners
+        function initMobileMenu() {
+            const menuBtn = document.querySelector('.menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuBtn && navLinks) {
+                menuBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    menuBtn.classList.toggle('active');
+                });
+
+                // Fecha o menu ao clicar em um link
+                const links = document.querySelectorAll('.nav-links a');
+                links.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        menuBtn.classList.remove('active');
+                    });
+                });
+            }
+        }
+
+        // Garante que o código só execute após o DOM estar carregado
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMobileMenu);
+        } else {
+            initMobileMenu();
+        }
+    </script>
 </body>
 </html>
